@@ -1,8 +1,6 @@
 import { useState } from "react";
 
-function BookEdit({book, onEdit, editState}) {
-
-    const [showEdit, setShowEdit] = editState
+function BookEdit({book, onEdit}) {
 
     const [title, setTitle] = useState(book.title)
 
@@ -14,8 +12,6 @@ function BookEdit({book, onEdit, editState}) {
     const handleSave = (event) => {
         event.preventDefault()  // prevent reloading the page!
         onEdit(book.id, title)
-        setTitle(title)
-        setShowEdit(!showEdit)
     }
 
     return <div>

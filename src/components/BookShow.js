@@ -5,6 +5,11 @@ function BookShow({book, onDelete, onEdit}) {
     
     const [showEdit, setShowEdit] = useState(false)
 
+    const handleEditSubmit = (id, newTitle) => {
+        onEdit(id, newTitle)
+        setShowEdit(false)
+    }
+
     const handleEditClick = () => {
         setShowEdit(!showEdit)
     }
@@ -16,7 +21,7 @@ function BookShow({book, onDelete, onEdit}) {
 
     let content = <h3>{book.title}</h3> 
     if (showEdit){  //  === true
-        content = <BookEdit book={book} onEdit={onEdit} editState={[showEdit, setShowEdit]}/>
+        content = <BookEdit book={book} onEdit={handleEditSubmit}/>
     }
 
     return <div className="book-show">
