@@ -19,9 +19,8 @@ function App() {
     const updatedBooks = books.map((book) => {
       if (book.id === id){
         return {...book, title: newTitle}
-      } else {
-        return book
       }
+      return book
     })
     setBooks(updatedBooks)
   }
@@ -41,6 +40,7 @@ function App() {
 
   return (
     <div className="app">
+      <h1>Reading List</h1>
       <BookList books={books} onDelete={deleteBookById} onEdit={editBookById} />  
       <BookCreate onCreate={handleBookCreate} books={books} />  
       {/* name of the PROPERTY 'onCreate' could be whatever I imagine */}
