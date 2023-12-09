@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import BookCreate from './components/BookCreate';
 import BookList from './components/BookList';
+import axios from 'axios';
 
 
 function App() {
@@ -25,15 +26,16 @@ function App() {
     setBooks(updatedBooks)
   }
 
-  const handleBookCreate = (title) => {
+  const handleBookCreate = async (title) => {
+
+    const response = await axios.post("http://localhost:3001/books", {
+      title  // equal to title: title
+    })
+
     // DO NOT MODIFY THE STATE !! THIS IS WRONG CODE:
     // books.push({id: 123, title: title});
     // setBooks(books)
-    const updatedBooks = [
-      ...books, 
-      // {id: 123, title: title}  - if key and value have identical names:
-      {id: Math.round(Math.random() * 9999), title}  // good enought for this app
-    ];
+    const updatedBooks = [ ...books, response.data];
     setBooks(updatedBooks);
     console.log("List of books: ", books)
   }
