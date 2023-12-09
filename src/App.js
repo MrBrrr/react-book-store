@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BookCreate from './components/BookCreate';
 import BookList from './components/BookList';
 import axios from 'axios';
@@ -8,6 +8,22 @@ import axios from 'axios';
 function App() {
 
   const [books, setBooks] = useState([]);
+
+  const fetchBooks = async() => {
+    const response = await axios.get("http://localhost:3001/books")
+    setBooks(response.data)
+  }
+
+  // This is callend only on initial rendering 
+  //  + when rerendered but this has to be specified in the second argument []
+  useEffect(() =>{
+    fetchBooks()
+  }, [])
+
+  // DO NOT DO THIS!!!
+  // fetchBooks();  
+  // this causes the stuck in a loop of rendering App and caling this line
+  // checkout: browser -> inspect -> network -> fetch xhr
 
   const deleteBookById = (id) => {
     const updatedBooks = books.filter((book) => {

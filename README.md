@@ -42,3 +42,11 @@ REST Client
 1. Create file `api.http`
 1. Optionally (in case of Error when sending requests) edit `package.json` adding --host 127.0.0.1 to the server command
 
+------------------
+`useEfect` is React method that I can tell at which renders is going to be called  
+
+It is called:
+`useEfect(() => console.log("Hi"))` - every time  
+`useEfect(() => console.log("Hi"), [])` - only after first  
+`useEfect(() => console.log("Hi"), [counter])` - everytime the value of counter changed  
+`useEfect(() => console.log("Hi"), [a, b, c])` - everytime if any of a, b, c will change  
