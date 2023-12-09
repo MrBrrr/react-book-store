@@ -28,3 +28,17 @@ Default listning port for react server is 3000 (if it's busy it will ask for ano
 
 In future: 
 Go to json server: `localhost:3001/books`
+
+Requests:
+mth     url                             req body                    resp body
+POST    http://localhost:3000/books     {title: Harry Potter}       {title: New Title, id: 1}
+GET     http://localhost:3000/books     -                           [{...}, {...}]
+PUT     http://localhost:3000/books/1   {title: New Title, id: 1}   {...}
+DELETE  http://localhost:3000/books/1   -                           {...}
+
+------------------
+REST Client
+1. Install extenstion REST Client
+1. Create file `api.http`
+1. Optionally (in case of Error when sending requests) edit `package.json` adding --host 127.0.0.1 to the server command
+
