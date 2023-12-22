@@ -50,3 +50,10 @@ It is called:
 `useEfect(() => console.log("Hi"), [])` - only after first  
 `useEfect(() => console.log("Hi"), [counter])` - everytime the value of counter changed  
 `useEfect(() => console.log("Hi"), [a, b, c])` - everytime if any of a, b, c will change  
+
+------------------
+## Context
+Is not replacement neither for *Props* nor *Redux* (centralized state store)  
+It is a kind of communication channel. It doesn't care about kind of data nor organization - Redux does.
+
+- createContext, Provider, useContext
