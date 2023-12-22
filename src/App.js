@@ -25,17 +25,23 @@ function App() {
   // this causes the stuck in a loop of rendering App and caling this line
   // checkout: browser -> inspect -> network -> fetch xhr
 
-  const deleteBookById = (id) => {
+  const deleteBookById = async (id) => {
+    await axios.delete(`http://localhost:3001/books/${id}`)
     const updatedBooks = books.filter((book) => {
       return (book.id !== id)
     })
     setBooks(updatedBooks)
   }
   
-  const editBookById = (id, newTitle) => {
+  const editBookById = async (id, newTitle) => {
+    const response = await axios.put(`http://localhost:3001/books/${id}`, {title: newTitle})
+    console.log("response", response.data)
+
     const updatedBooks = books.map((book) => {
       if (book.id === id){
-        return {...book, title: newTitle}
+        return {...book, ...response.data}  // update te list with received response
+        // take all the different properties of that object (key-value pairs)
+        //  and update the object right here
       }
       return book
     })
