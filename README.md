@@ -59,3 +59,13 @@ It is a kind of communication channel. It doesn't care about kind of data nor or
 - createContext, Provider, useContext
 
 Changing the location of: books, editBookById, deleteBookById, fetchBook, createBook to Context will change the way of providing that to different components - not through props any more.
+
+------------------
+## Hooks
+- useState
+- useEffect
+- useContext
+...
+
+### Custom Hooks
+Small or large chunk of logic - use-books-context.js

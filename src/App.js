@@ -1,13 +1,13 @@
 import './App.css';
-import { useContext, useEffect } from 'react';
-import BookContext from './context/Books';
+import { useEffect } from 'react';
+import useBooksContext from './hooks/use-books-context';
 import BookCreate from './components/BookCreate';
 import BookList from './components/BookList';
 
 
 function App() {
   // this line just picks the specific function from the object / context
-  const { fetchBooks } = useContext(BookContext)
+  const { fetchBooks } = useBooksContext()
 
   // DO NOT DO THIS!!!
   // fetchBooks();  
