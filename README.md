@@ -57,3 +57,5 @@ Is not replacement neither for *Props* nor *Redux* (centralized state store)
 It is a kind of communication channel. It doesn't care about kind of data nor organization - Redux does.
 
 - createContext, Provider, useContext
+
+Changing the location of: books, editBookById, deleteBookById, fetchBook, createBook to Context will change the way of providing that to different components - not through props any more.

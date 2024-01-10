@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import BooksContext from "../context/Books";
 
-function BookEdit({book, onEdit}) {
-
+function BookEdit({book, onEditSubmition}) {
+    const { editBookById } = useContext(BooksContext)
     const [title, setTitle] = useState(book.title)
 
     const handleTitleChange = (event) => {
@@ -11,7 +12,8 @@ function BookEdit({book, onEdit}) {
 
     const handleSave = (event) => {
         event.preventDefault()  // prevent reloading the page!
-        onEdit(book.id, title)
+        onEditSubmition()  // close the edit form
+        editBookById(book.id, title)
     }
 
     return <div>
