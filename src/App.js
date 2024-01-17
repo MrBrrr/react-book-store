@@ -7,7 +7,7 @@ import BookList from './components/BookList';
 
 function App() {
   // this line just picks the specific function from the object / context
-  const { fetchBooks } = useBooksContext()
+  const { stableFetchBooks } = useBooksContext()
 
   // DO NOT DO THIS!!!
   // fetchBooks();  
@@ -18,8 +18,8 @@ function App() {
   // This is callend only on initial rendering 
   //  + when rerendered but this has to be specified in the second argument []
   useEffect(() =>{
-    fetchBooks()
-  }, [])
+    stableFetchBooks()
+  }, [fetchBooks])
   
   return (
     <div className="app">

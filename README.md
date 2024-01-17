@@ -43,13 +43,38 @@ REST Client
 1. Optionally (in case of Error when sending requests) edit `package.json` adding --host 127.0.0.1 to the server command
 
 ------------------
-`useEfect` is React method that I can tell at which renders is going to be called  
+## useEffect
+is a React method that I can tell at which renders is going to be called  
 
 It is called:
-`useEfect(() => console.log("Hi"))` - every time  
+`useEfect(() => console.log("Hi"))` - after first and every other render  
 `useEfect(() => console.log("Hi"), [])` - only after first  
 `useEfect(() => console.log("Hi"), [counter])` - everytime the value of counter changed  
 `useEfect(() => console.log("Hi"), [a, b, c])` - everytime if any of a, b, c will change  
+
+Confusing facts around `useEffect`
+#### Stale variable references
+https://codesandbox.io/p/sandbox/hungry-fog-0ev1ec or [confusing_use_effect.js](./exercises/confusing_use_effect.js)  
+Every time the component is rendered the completly new set of variables are beeing declared. But the useEffect won't be recalled (empty array as 2nd argument). Eslint providea hint (warning yellow underscored) bur following it sometimes may result in even more bugs.  
+
+I shouldn't follow that in case of fetchBooks eslint [hint](./src/App.js). This would follow the endlesss stream of requests to http. WHY?  
+The `useEffect` is called during first render. The `fetchBooks` variable is created and stored in PC memory. First render of `useEffect` causes call to the `fetchBooks` function which update the state of `books`. That causes rerender of Provider component and all of its children, so the `App` component consiting of rerender of `useEffect`- that create another variable with the same name `fetchBooks`... - and this is the loop, more and more `fetchBooks` variable exists and being called durign useEffect rerenders.  
+
+To solve eslint hint and avoid future bugs, add the `fetchBooks` to the list and use new hook: **`useCallback`**
+
+## useCallback
+Tells React not to change the function over renders  
+Fixes buggy part of useEffect (and other similar situations)
+Unlikely to useEffect is neither executed nor running the function  
+1. First render - just returns the function passed.  
+2. Second render if second argument is:
+    - `[]` it gives back the original function from the first render, although the `fetchBook` (function) vairable is created and saved to memory again
+    - 
+
+
+`const stableFetchBooks = useCallback(fetchBooks, [])` second argument is a mandatory array -  
+
+
 
 ------------------
 ## Context

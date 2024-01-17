@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { useCallback, createContext } from "react";
 import { useState } from "react";
 import axios from "axios";
 
@@ -12,6 +12,7 @@ function Provider({children}) {
         const response = await axios.get("http://localhost:3001/books")
         setBooks(response.data)
     }
+    const stableFetchBooks = useCallback(fetchBooks, []);
     
     const deleteBookById = async (id) => {
         await axios.delete(`http://localhost:3001/books/${id}`)
@@ -51,7 +52,7 @@ function Provider({children}) {
 
     const valueToShare = {
         books,
-        fetchBooks,
+        stableFetchBooks,
         deleteBookById,
         editBookById,
         createBook,
