@@ -52,6 +52,8 @@ It is called:
 `useEfect(() => console.log("Hi"), [counter])` - everytime the value of counter changed  
 `useEfect(() => console.log("Hi"), [a, b, c])` - everytime if any of a, b, c will change  
 
+1st arguent of useEffect is a funcion ALWAYS called but returning another function (or void)   
+
 Confusing facts around `useEffect`
 #### Stale variable references
 https://codesandbox.io/p/sandbox/hungry-fog-0ev1ec or [confusing_use_effect.js](./exercises/confusing_use_effect.js)  
@@ -94,3 +96,7 @@ Changing the location of: books, editBookById, deleteBookById, fetchBook, create
 
 ### Custom Hooks
 Small or large chunk of logic - use-books-context.js
+
+
+TODO:
+repeat lesson 150 
